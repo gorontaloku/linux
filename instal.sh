@@ -8,7 +8,7 @@ finish() {
   local ret=$?
   if [ ${ret} -ne 0 ] && [ ${ret} -ne 130 ]; then
     echo
-    echo "ERROR: Failed to setup DEBIAN on Termux."
+    echo "ERROR: Failed to setup LINUX on Termux."
     echo "Please refer to the error message(s) above"
   fi
 }
@@ -18,17 +18,11 @@ trap finish EXIT
 clear
 
 echo ""
-echo "Ini Adalah Script Install Debian Di Termux"
+echo "Ini Adalah Script Install Linux Di Termux"
 echo "Hati-Hati Dalam Penggunaan Script Ini"
 echo " Developer  : Bestmomen "
-echo " My Number  : 0082311123196 "
+echo " My Number  : 082311123196 "
 echo ""
-read -r -p "Please enter username for debian installation: " username </dev/tty
-
-termux-change-repo
-pkg update -y -o Dpkg::Options::="--force-confold"
-pkg upgrade -y -o Dpkg::Options::="--force-confold"
-sed -i '12s/^#//' $HOME/.termux/termux.properties
 
 # Display a message 
 clear -x
@@ -62,43 +56,46 @@ done
 
 clear
 
-pkgs=( 'wget' 'ncurses-utils' 'dbus' 'proot-distro' 'x11-repo' 'tur-repo' 'android-tools' 'pulseaudio')
-pkg uninstall dbus -y
-pkg update
-pkg install "${pkgs[@]}" -y -o Dpkg::Options::="--force-confold"
+pkg update && yes | pkg upgrade
+pkg install android-tools -y
+pkg install x11-repo -y
+pkg install termux-x11-nightly -y
+pkg install file -y
+pkg install pulseaudio -y
+pkg install virglrenderer-android -y
+pkg install proot-distro -y
 
-#Create default directories
-mkdir -p Desktop
-mkdir -p Downloads
+#membuat folder shortcut widget
+mkdir -p /data/data/com.termux/files/home/.shortcuts
+chmod 700 -R /data/data/com.termux/files/home/.shortcuts
 
-#Download required install scripts
-wget https://github.com/wahyu22010/Debian/raw/main/xfce.sh
-wget https://github.com/wahyu22010/Debian/raw/main/root.sh
-wget https://github.com/wahyu22010/Debian/raw/main/utils.sh
-chmod +x *.sh
+#install ubuntu
+pd install ubuntu
 
-./xfce.sh "$username"
-./root.sh "$username"
-./utils.sh
+#pindah File
+mv storage/downloads/File2.tar /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+tar -xf File2.tar
+rm /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/File2.tar
+cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/home/user2/Desktop/
+rm /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/home/user2/Desktop/'Cek Update.desktop'
 
+cd
 
+#copy bacground keren
+cp storage/downloads/xfce-leaves.svg /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/usr/share/backgrounds/xfce/
 
-# Display a message 
-clear -x
-echo ""
-echo "Pastikan Internet Berjalan Dengan Baik "
-echo "Downloading Termux-X11" 
+#copy notif desktop
+cp storage/downloads/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
+
+#copy widget
+cp storage/downloads/Mulai.sh /data/data/com.termux/files/home/.shortcuts
+cp storage/downloads/Matikan.sh /data/data/com.termux/files/home/.shortcuts
+
 # Unduh termux x11
 wget https://github.com/termux/termux-x11/releases/download/nightly/app-arm64-v8a-debug.apk
 mv app-arm64-v8a-debug.apk $HOME/storage/downloads/
-#termux-open $HOME/storage/downloads/app-arm64-v8a-debug.apk
 
-source $PREFIX/etc/bash.bashrc
-termux-reload-settings
-
-#Downloads File wpsoffice
-wget https://wpsoffice.wahyupratama-purba2004.workers.dev/0:/wpsoffice.deb
-mv wpsoffice.deb $PREFIX/var/lib/proot-distro/installed-rootfs/debian/home/$username/
 
 clear -x
 echo ""
@@ -106,9 +103,3 @@ echo "Instalasi Telah Selesai!"
 echo "Jangan Pernah Mencoba Untuk Instalasi Mandiri Tanpa Pengawasan Saya"
 echo "BESTMOMEN"
 echo ""
-
-rm xfce.sh
-rm root.sh
-rm utils.sh
-rm instal.sh
-
