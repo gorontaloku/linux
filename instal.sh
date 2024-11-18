@@ -80,7 +80,8 @@ cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
 rm /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/home/user2/Desktop/'Cek Update.desktop'
 cd
 #copy bacground keren
-cp storage/downloads/xfce-leaves.svg /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/usr/share/backgrounds/xfce/
+wget https://raw.githubusercontent.com/gorontaloku/linux/14c892f65f82b46d4a308b34645ca6b27cd935b2/xfce-leaves.svg
+mv /data/data/com.termux/files/home/xfce-leaves.svg /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/usr/share/backgrounds/xfce/
 
 #copy notif desktop
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Notify.sh
