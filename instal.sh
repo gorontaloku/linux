@@ -6,18 +6,20 @@ finish() {
   local ret=$?
   if [ ${ret} -ne 0 ] && [ ${ret} -ne 130 ]; then
     echo
-    echo "ERROR: Failed to setup LINUX on Termux."
+    echo "ERROR: Failed to setup Linux on Termux."
     echo "Please refer to the error message(s) above"
   fi
 }
 trap finish EXIT
-clear
+clear 
 echo ""
 echo "Ini Adalah Script Install Linux Di Termux"
 echo "Hati-Hati Dalam Penggunaan Script Ini"
 echo " Developer  : Bestmomen "
 echo " My Number  : 082311123196 "
 echo ""
+
+termux-change-repo
 # Display a message 
 clear -x
 echo ""
@@ -44,7 +46,7 @@ while true; do
     fi
 done
 clear
-pkg update && yes | pkg upgrade
+pkg update && pkg upgrade
 pkg install android-tools -y
 pkg install x11-repo -y
 pkg install termux-x11-nightly -y
@@ -57,8 +59,16 @@ mkdir -p /data/data/com.termux/files/home/.shortcuts
 chmod 700 -R /data/data/com.termux/files/home/.shortcuts
 #install ubuntu
 pd install ubuntu
+
+clear -x
+echo ""
+echo "Hampir selesai, tunggulah beberapa saat!"
+echo "Proses extract sedang berlangsung"
+echo "jangan di close"
+echo ""
+
 #pindah File
-mv storage/downloads/File2.tar /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+cp storage/downloads/File2.tar /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 tar -xf File2.tar
 rm /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/File2.tar
@@ -72,9 +82,7 @@ cp storage/downloads/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-dis
 #copy widget
 cp storage/downloads/Mulai.sh /data/data/com.termux/files/home/.shortcuts
 cp storage/downloads/Matikan.sh /data/data/com.termux/files/home/.shortcuts
-# Unduh termux x11
-wget https://github.com/termux/termux-x11/releases/download/nightly/app-arm64-v8a-debug.apk
-mv app-arm64-v8a-debug.apk $HOME/storage/downloads/
+
 clear -x
 echo ""
 echo "Instalasi Telah Selesai!"
