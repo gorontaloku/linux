@@ -54,9 +54,15 @@ pkg install file -y
 pkg install pulseaudio -y
 pkg install virglrenderer-android -y
 pkg install proot-distro -y
+pkg install wget -y
+
 #membuat folder shortcut widget
 mkdir -p /data/data/com.termux/files/home/.shortcuts
 chmod 700 -R /data/data/com.termux/files/home/.shortcuts
+
+#Create default directories
+mkdir -p Downloads
+
 #install ubuntu
 pd install ubuntu
 
@@ -78,6 +84,7 @@ cd
 #copy bacground keren
 cp storage/downloads/xfce-leaves.svg /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/usr/share/backgrounds/xfce/
 #copy notif desktop
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Notify.sh
 cp storage/downloads/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
 #copy widget
 cp storage/downloads/Mulai.sh /data/data/com.termux/files/home/.shortcuts
