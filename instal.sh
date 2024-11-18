@@ -60,8 +60,6 @@ pkg install wget -y
 mkdir -p /data/data/com.termux/files/home/.shortcuts
 chmod 700 -R /data/data/com.termux/files/home/.shortcuts
 
-#Create default directories
-mkdir -p Downloads
 
 #install ubuntu
 pd install ubuntu
@@ -83,9 +81,11 @@ rm /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
 cd
 #copy bacground keren
 cp storage/downloads/xfce-leaves.svg /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/usr/share/backgrounds/xfce/
+
 #copy notif desktop
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Notify.sh
-cp storage/downloads/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
+mv /data/data/com.termux/files/home/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
+
 #copy widget
 cp storage/downloads/Mulai.sh /data/data/com.termux/files/home/.shortcuts
 cp storage/downloads/Matikan.sh /data/data/com.termux/files/home/.shortcuts
