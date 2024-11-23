@@ -76,6 +76,23 @@ exit
 exit
 
 pd login ubuntu --user droidmaster
+sudo apt install dbus-x11 ubuntu-desktop -y
+for file in $(find /usr -type f -iname "*login1*"); do rm -rf $file
+done
+
+cat <<EOF | sudo tee /etc/apt/preferences.d/nosnap.pref
+# To prevent repository packages from triggering the installation of Snap,
+# this file forbids snapd from being installed by APT.
+# For more information: https://linuxmint-user-guide.readthedocs.io/en/latest/snap.html
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
+EOF
+
+sudo add-apt-repository ppa:mozillateam/ppa
+sudo apt-get update
+sudo apt-get install firefox-esr
+
 sudo apt install xfce4 -y
 wget https://wpsoffice.wahyupratama-purba2004.workers.dev/0:/wpsoffice.deb
 sudo gdebi wpsoffice.deb
@@ -83,6 +100,10 @@ exit
 
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/startxfce4_ubuntu.sh
 chmod +x startxfce4_ubuntu.sh
+
+wget https://raw.githubusercontent.com/LinuxDroidMaster/Termux-Desktops/main/scripts/proot_ubuntu/startgnome_ubuntu.sh
+chmod +x startgnome_ubuntu.sh
+
 
 
 clear -x
