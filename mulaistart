@@ -6,7 +6,8 @@ XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :1.0 &
 sleep 1
 am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity > /dev/null 2>&1
 sleep 1
-DISPLAY=:1.0 GALLIUM_DRIVER=virpipe dbus-launch --exit-with-session startxfce4 & > /dev/null 2>&1
+# Log in to proot Ubuntu and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
+proot-distro login ubuntu --user user2 --shared-tmp -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
 
 sleep 2
 process_id=$(ps -aux | grep '[x]fce4-screensaver' | awk '{print $2}')
