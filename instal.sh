@@ -86,6 +86,8 @@ mv /data/data/com.termux/files/home/xfce-leaves.svg /data/data/com.termux/files/
 #copy notif desktop
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Notify.sh
 mv /data/data/com.termux/files/home/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
+cd $PREFIX/var/lib/proot-distro/installed-rootfs/ubuntu/
+chmod +x Notify.sh
 
 #copy widget
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/start
