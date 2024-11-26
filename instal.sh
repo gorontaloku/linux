@@ -88,10 +88,10 @@ wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Notify.
 mv /data/data/com.termux/files/home/Notify.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/
 
 #copy widget
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Mulai.sh
-mv /data/data/com.termux/files/home/Mulai.sh /data/data/com.termux/files/home/.shortcuts
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/Matikan.sh
-mv /data/data/com.termux/files/home/Matikan.sh /data/data/com.termux/files/home/.shortcuts
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/start
+#mv /data/data/com.termux/files/home/Mulai.sh /data/data/com.termux/files/home/.shortcuts
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/stop
+#mv /data/data/com.termux/files/home/Matikan.sh /data/data/com.termux/files/home/.shortcuts
 
 clear -x
 echo ""
