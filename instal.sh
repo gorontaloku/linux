@@ -91,8 +91,10 @@ chmod +x Notify.sh
 
 #copy widget
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/start
+chmod +x start
 #mv /data/data/com.termux/files/home/Mulai.sh /data/data/com.termux/files/home/.shortcuts
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/stop
+chmod +x stop
 #mv /data/data/com.termux/files/home/Matikan.sh /data/data/com.termux/files/home/.shortcuts
 
 clear -x
@@ -101,3 +103,5 @@ echo "Instalasi Telah Selesai!"
 echo "Jangan Pernah Mencoba Untuk Instalasi Mandiri Tanpa Pengawasan Saya"
 echo "BESTMOMEN"
 echo ""
+
+rm instal.sh
