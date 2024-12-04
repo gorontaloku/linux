@@ -71,7 +71,8 @@ echo ""
 #pindah File
 cp storage/downloads/debian.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -zxvf debian.tar.gz
+tar -xf debian.tar.gz
+rm debian.tar.gz
 cd
 
 cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
