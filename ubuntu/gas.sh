@@ -57,12 +57,8 @@ pkg install virglrenderer-android -y
 pkg install proot-distro -y
 pkg install wget -y
 
-#membuat folder shortcut widget
-mkdir -p /data/data/com.termux/files/home/.shortcuts
-chmod 700 -R /data/data/com.termux/files/home/.shortcuts
 
-
-#install ubuntu
+#install debian
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs
 clear -x
@@ -82,12 +78,9 @@ cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 chmod +x Notify.sh
 
 #copy widget
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/start
-chmod +x start
-#mv /data/data/com.termux/files/home/Mulai.sh /data/data/com.termux/files/home/.shortcuts
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/stop
-chmod +x stop
-#mv /data/data/com.termux/files/home/Matikan.sh /data/data/com.termux/files/home/.shortcuts
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
+chmod +x utils.sh
+./utils.sh
 
 clear -x
 echo ""
@@ -95,5 +88,3 @@ echo "Instalasi Telah Selesai!"
 echo "Jangan Pernah Mencoba Untuk Instalasi Mandiri Tanpa Pengawasan Saya"
 echo "BESTMOMEN"
 echo ""
-
-#rm instal.sh
