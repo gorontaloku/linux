@@ -4,6 +4,7 @@ pkg install git
 pkg install wget
 pkg install zsh
 pkg install lsd
+pkg install python
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 termux-reload-settings
