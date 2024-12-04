@@ -6,7 +6,7 @@ pkg install zsh
 pkg install lsd
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-termux-reloud-settings
+termux-reload-settings
 
 exit
 
@@ -23,6 +23,7 @@ cd termux-style
 
 ./tstyle
 
+cd
 
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/tampilan.py
-mv /data/data/com.termux/files/usr/etc/
+mv tampilan.py /data/data/com.termux/files/usr/etc/
