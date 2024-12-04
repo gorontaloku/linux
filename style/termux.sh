@@ -22,3 +22,7 @@ cd termux-style
 ./install
 
 ./tstyle
+
+
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/tampilan.py
+mv /data/data/com.termux/files/usr/etc/
