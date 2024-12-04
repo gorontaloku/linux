@@ -1,5 +1,3 @@
-#!/bin/bash
-
 pkg install update
 pkg install upgrade -y
 pkg install git
