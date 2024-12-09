@@ -23,8 +23,7 @@ wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/tampila
 mv tampilan.py /data/data/com.termux/files/usr/etc/
 
 echo "ZSH_THEME='powerlevel10k/powerlevel10k'" >> /data/data/com.termux/files/home/.zshrc
-echo "
-alias ls='lsd'" >> data/data/com.termux/files/home/.zshrc
+echo "alias ls='lsd'" >> data/data/com.termux/files/home/.zshrc
 
 echo "clear" >> $PREFIX/etc/zshrc
 echo "cd ../usr/etc" >> $PREFIX/etc/zshrc
