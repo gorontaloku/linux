@@ -9,8 +9,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-echo "ZSH_THEME="powerlevel10k/powerlevel10k" " >> #HOME/.zshrc
-echo "alias ls="lsd" " >> #HOME/.zshrc
+echo "
+ZSH_THEME="powerlevel10k/powerlevel10k"
+" >> #HOME/.zshrc
+echo "
+alias ls="lsd"
+" >> #HOME/.zshrc
 
 git clone https://github.com/adi1090x/termux-style
 
