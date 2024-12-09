@@ -11,10 +11,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 echo "
 ZSH_THEME="powerlevel10k/powerlevel10k"
-" >> #HOME/.zshrc
+" >> /data/data/com.termux/files/home/.zshrc
 echo "
 alias ls="lsd"
-" >> #HOME/.zshrc
+" >> data/data/com.termux/files/home/.zshrc
 
 git clone https://github.com/adi1090x/termux-style
 
