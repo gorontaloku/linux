@@ -29,5 +29,3 @@ cd
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/tampilan.py
 mv tampilan.py /data/data/com.termux/files/usr/etc/
 
-cd /.oh-my-zsh
-nano zshrc
