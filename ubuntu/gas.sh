@@ -82,6 +82,13 @@ chmod +x Notify.sh
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
 chmod +x utils.sh
 ./utils.sh
+rm utils.sh
+
+#Download script banner
+wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
+chmod +x termux.sh
+./termux.sh
+rm termux.sh
 
 clear -x
 echo ""
