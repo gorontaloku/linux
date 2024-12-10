@@ -1,4 +1,4 @@
-pkg install git -y
+pkg install git
 pkg install wget -y
 pkg install zsh -y
 pkg install lsd -y
