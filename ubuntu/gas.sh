@@ -1,7 +1,9 @@
 #!/bin/bash
+
 # Unofficial Bash Strict Mode
 set -euo pipefail
 IFS=$'\n\t'
+
 finish() {
   local ret=$?
   if [ ${ret} -ne 0 ] && [ ${ret} -ne 130 ]; then
@@ -10,8 +12,11 @@ finish() {
     echo "Please refer to the error message(s) above"
   fi
 }
+
 trap finish EXIT
+
 clear 
+
 echo ""
 echo "Ini Adalah Script Install Linux Di Termux"
 echo "Hati-Hati Dalam Penggunaan Script Ini"
