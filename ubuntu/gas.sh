@@ -23,7 +23,7 @@ echo "Hati-Hati Dalam Penggunaan Script Ini"
 echo " Developer  : Bestmomen "
 echo " My Number  : 082311123196 "
 echo ""
-read -r -p "Please enter username for debian installation: " username </dev/tty
+#read -r -p "Please enter username for debian installation: " username </dev/tty
 
 termux-change-repo
 # Display a message 
