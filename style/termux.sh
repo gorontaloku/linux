@@ -14,7 +14,8 @@ echo "alias ls='lsd'" >> data/data/com.termux/files/home/.zshrc
 rm nano .zshrc
 
 #Download .zshrc costum
-wget
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/.zshrc
+
 git clone https://github.com/adi1090x/termux-style
 
 cd termux-style
