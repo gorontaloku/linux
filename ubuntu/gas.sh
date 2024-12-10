@@ -76,6 +76,7 @@ cd
 
 cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 chmod +x Notify.sh
+./Notify.sh
 
 #copy widget
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
