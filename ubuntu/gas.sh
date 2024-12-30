@@ -88,18 +88,21 @@ rm debian.tar.gz
 
 #copy widget
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
+cd
 chmod +x utils.sh
 ./utils.sh
-rm utils.sh
+
 
 #Download script banner
 wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
 chmod +x termux.sh
 ./termux.sh
-rm termux.sh
+
 
 cd
 rm gas.sh
+rm utils.sh
+rm termux.sh
 
 clear -x
 echo ""
