@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Start script
-cat <<'EOF' > start
+cat <<'EOF' > mulai
 #!/bin/bash
 
 # Start PulseAudio
@@ -17,22 +17,28 @@ virgl_test_server_android --angle-gl & > /dev/null 2>&1
 
 env DISPLAY=:1.0 GALLIUM_DRIVER=virpipe dbus-launch --exit-with-session startxfce4 & > /dev/null 2>&1
 
+proot-distro login debian --user user --shared-tmp -- bash -c "export PULSE_SERVER=127.0.0.1 > /dev/null 2>&1 "
+
+sleep 5
+process_id=$(ps -aux | grep '[x]fce4-screensaver' | awk '{print $2}')
+kill "$process_id" > /dev/null 2>&1
+
 #pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 
 # Kill all old processes
-killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android termux-wake-lock
+#killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android termux-wake-lock
 
 
-sleep 3
+#sleep 3
 
 
 # Log in to proot debian and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
-proot-distro login debian --user user --shared-tmp -- bash -c "export PULSE_SERVER=127.0.0.1 > /dev/null 2>&1 "
+#proot-distro login debian --user user --shared-tmp -- bash -c "export PULSE_SERVER=127.0.0.1 > /dev/null 2>&1 "
 
 EOF
 
-chmod +x start
-mv start $PREFIX/bin
+chmod +x mulai
+mv mulai $PREFIX/bin
 
 #Stop script
 cat <<'EOF' > stop
