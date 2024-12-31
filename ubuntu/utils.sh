@@ -17,7 +17,7 @@ virgl_test_server_android --angle-gl & > /dev/null 2>&1
 
 env DISPLAY=:1.0 GALLIUM_DRIVER=virpipe dbus-launch --exit-with-session startxfce4 & > /dev/null 2>&1
 
-proot-distro login debian --user user --shared-tmp -- bash -c "export PULSE_SERVER=127.0.0.1 > /dev/null 2>&1 "
+proot-distro login debian --user user --shared-tmp -- bash -c "export PULSE_SERVER=127.0.0.1 env DISPLAY=:1.0 GALLIUM_DRIVER=virpipe dbus-launch --exit-with-session startxfce4 & > /dev/null 2>&1 "
 
 sleep 5
 process_id=$(ps -aux | grep '[x]fce4-screensaver' | awk '{print $2}')
