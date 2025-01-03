@@ -79,8 +79,8 @@ cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 tar -xf debian.tar.gz
 rm debian.tar.gz
 cd
-cd storage/downloads
-rm debian.tar.gz
+#cd storage/downloads
+#rm debian.tar.gz
 
 #cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 #chmod +x Notify.sh
