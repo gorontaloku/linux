@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Start script
-cat <<'EOF' > mulai
+cat <<'EOF' > start
 #!/bin/bash
 
 # Start PulseAudio
@@ -35,8 +35,8 @@ kill "$process_id" > /dev/null 2>&1
 
 EOF
 
-chmod +x mulai
-mv mulai $PREFIX/bin
+chmod +x start
+mv start $PREFIX/bin
 
 #Stop script
 cat <<'EOF' > stop
