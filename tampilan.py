@@ -17,7 +17,7 @@ def login():
   system("clear")
   ketik("Dibutuhkan password dulu sebelum masuk")
   pswd = input("\033[37;1mPassword \033[31;1m> ")
-  if pswd =="25":
+  if pswd =="12345":
     count = 0
     load = "\033[36;1m>"
     for t in range(101):
