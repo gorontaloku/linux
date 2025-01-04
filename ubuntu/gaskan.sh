@@ -94,13 +94,13 @@ chmod +x utils.sh
 
 
 #Download script banner
-wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
-chmod +x termux.sh
-./termux.sh
+#wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
+#chmod +x termux.sh
+#./termux.sh
 
 
 cd
-rm gas.sh
+rm gaskan.sh
 rm utils.sh
 rm termux.sh
 
