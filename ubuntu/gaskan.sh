@@ -74,10 +74,10 @@ echo "jangan di close"
 echo ""
 
 #pindah File
-cp storage/downloads/macos.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+cp storage/downloads/debian.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -xf macos.tar.gz
-rm macos.tar.gz
+tar -xf debian.tar.gz
+rm debian.tar.gz
 cd
 #cd storage/downloads
 #rm debian.tar.gz
