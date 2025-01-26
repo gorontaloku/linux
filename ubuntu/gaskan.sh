@@ -98,6 +98,13 @@ wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
 chmod +x termux.sh
 ./termux.sh
 
+pd login debian
+cd /tmp
+git clone https://github.com/iamdh4/ttf-wps-fonts.git
+cd ttf-wps-fonts
+sudo bash install.sh
+cd
+rm -rf /tmp/ttf-wps-fonts
 
 cd
 rm gaskan.sh
