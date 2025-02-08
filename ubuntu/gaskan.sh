@@ -74,10 +74,10 @@ echo "jangan di close"
 echo ""
 
 #pindah File
-cp storage/downloads/debian1.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+cp storage/downloads/debian.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -xf debian1.tar.gz
-rm debian1.tar.gz
+tar -xf debian.tar.gz
+rm debian.tar.gz
 cd
 #cd storage/downloads
 #rm debian.tar.gz
@@ -94,9 +94,9 @@ chmod +x utils.sh
 
 
 #Download script banner
-wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
-chmod +x termux.sh
-./termux.sh
+#wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
+#chmod +x termux.sh
+#./termux.sh
 
 #pd login debian
 #cd /tmp
