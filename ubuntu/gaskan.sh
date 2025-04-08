@@ -79,6 +79,9 @@ cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 tar -xf debian.tar.gz
 rm debian.tar.gz
 cd
+cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian
+mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+cd
 #cd storage/downloads
 #rm debian.tar.gz
 
