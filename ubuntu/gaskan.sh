@@ -82,8 +82,8 @@ cd
 
 mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
 cd
-cd storage/downloads
-rm macos.tar.gz
+#cd storage/downloads
+#rm macos.tar.gz
 
 #cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 #chmod +x Notify.sh
