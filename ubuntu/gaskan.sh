@@ -80,8 +80,8 @@ tar -xf macos.tar.gz
 rm macos.tar.gz
 cd
 
-mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
-cd
+#mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+#cd
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
 #rm macos.tar.gz
 
