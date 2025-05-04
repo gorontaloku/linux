@@ -21,12 +21,12 @@ def login():
     count = 0
     #load = "\033[36;1m>"
     for t in range(101):
-      sleep(0)
+      #sleep(0)
       #print(f"\rLoading {t}% [{load}]", end="", flush=True)
-      count += 1
-      if count == 3:
-        count = 0
-        load += ">"
+      #count += 1
+      #if count == 3:
+        #count = 0
+        #load += ">"
     ketik("\n\033[3;1mSucces")
     sleep(2)
     system("clear")
