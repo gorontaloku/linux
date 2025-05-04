@@ -19,9 +19,9 @@ def login():
   pswd = input("\033[37;1mPassword \033[31;1m> ")
   if pswd =="12345":
     count = 0
-    load = "\033[36;1m>"
+    #load = "\033[36;1m>"
     for t in range(101):
-      sleep(5)
+      sleep(0)
       #print(f"\rLoading {t}% [{load}]", end="", flush=True)
       count += 1
       if count == 3:
