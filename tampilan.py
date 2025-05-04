@@ -22,7 +22,7 @@ def login():
     load = "\033[36;1m>"
     for t in range(101):
       sleep(0.075)
-      print(f"\rLoading {t}% [{load}]", end="", flush=True)
+      #print(f"\rLoading {t}% [{load}]", end="", flush=True)
       count += 1
       if count == 3:
         count = 0
