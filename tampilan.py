@@ -21,7 +21,7 @@ def login():
     count = 0
     load = "\033[36;1m>"
     for t in range(101):
-      sleep(0)
+      sleep(5)
       #print(f"\rLoading {t}% [{load}]", end="", flush=True)
       count += 1
       if count == 3:
