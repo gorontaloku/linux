@@ -27,7 +27,7 @@ def login():
       if count == 3:
         count = 0
         load += ">"
-    ketik("\n\033[3;1mSucces")
+    ketik("\n\033[0;33mSUKSES BOSKU")
     sleep(2)
     system("clear")
   else:
