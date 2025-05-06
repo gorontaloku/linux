@@ -80,10 +80,10 @@ tar -xf macos.tar.gz
 rm macos.tar.gz
 cd
 
-#mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
-#cd
-#cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
-#rm macos.tar.gz
+mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+cd
+cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
+rm macos.tar.gz
 
 #cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 #chmod +x Notify.sh
@@ -97,9 +97,9 @@ chmod +x utils.sh
 
 
 #Download script banner
-#wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
-#chmod +x termux.sh
-#./termux.sh
+wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
+chmod +x termux.sh
+./termux.sh
 
 #pd login debian
 #cd /tmp
@@ -112,7 +112,7 @@ chmod +x utils.sh
 cd
 rm gaskan.sh
 rm utils.sh
-#rm termux.sh
+rm termux.sh
 
 clear -x
 echo ""
