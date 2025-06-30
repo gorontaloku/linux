@@ -85,6 +85,11 @@ cd
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
 #rm macos.tar.gz
 
+#DOWNLOAD PHOTOSHOP ONLINE
+#cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+#wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/Photoshop.desktop
+
+
 #cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 #chmod +x Notify.sh
 
