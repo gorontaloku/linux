@@ -100,6 +100,11 @@ chmod +x utils.sh
 wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
 chmod +x termux.sh
 ./termux.sh
+cd
+
+pd login debian
+apt install gimp
+apt install inkscape
 
 #pd login debian
 #cd /tmp
