@@ -80,8 +80,8 @@ tar -xf macosv2.tar.gz
 rm macosv2.tar.gz
 cd
 
-#mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
-#cd
+mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+cd
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
 #rm macos.tar.gz
 
@@ -107,9 +107,9 @@ chmod +x termux.sh
 ./termux.sh
 cd
 
-pd login debian
-apt install gimp
-apt install inkscape
+#pd login debian
+#apt install gimp
+#apt install inkscape
 
 #pd login debian
 #cd /tmp
