@@ -86,8 +86,8 @@ cd
 #rm macos.tar.gz
 
 #SET Walpapper
-cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/backgrounds/xfce/
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/xfce-x.jpg
+cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/images/desktop-base/
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/xfce-leaves.jpg
 cd
 
 #DOWNLOAD PHOTOSHOP ONLINE
