@@ -85,6 +85,11 @@ cd
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
 #rm macos.tar.gz
 
+#SET Walpapper
+cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/backgrounds/xfce/
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/xfce-x.jpg
+cd
+
 #DOWNLOAD PHOTOSHOP ONLINE
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
 #wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/Photoshop.desktop
