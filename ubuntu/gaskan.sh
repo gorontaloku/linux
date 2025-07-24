@@ -80,15 +80,15 @@ tar -xf macosv2.tar.gz
 rm macosv2.tar.gz
 cd
 
-mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
-cd
+#mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
+#cd
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
 #rm macos.tar.gz
 
 #SET Walpapper
-cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/images/desktop-base/
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/xfce-leaves.jpg
-cd
+#cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/images/desktop-base/
+#wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/xfce-leaves.jpg
+#cd
 
 #DOWNLOAD PHOTOSHOP ONLINE
 #cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
