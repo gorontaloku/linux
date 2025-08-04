@@ -74,9 +74,9 @@ echo "jangan di close"
 echo ""
 
 #pindah File
-cp storage/downloads/tes.tar.xz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+cp storage/downloads/tes.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -xf tes.tar.xz
+tar -xf tes.tar.gz
 #rm tes.tar.xz
 cd
 
