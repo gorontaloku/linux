@@ -76,7 +76,7 @@ echo ""
 #pindah File
 cp storage/downloads/tes.tar.gz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -xf tes.tar.gz
+tar -xf tes.tar.xz
 #rm tes.tar.xz
 cd
 
