@@ -16,6 +16,7 @@ rm nano .zshrc
 #Download .zshrc costum
 wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/.zshrc
 
+
 git clone https://github.com/adi1090x/termux-style
 
 cd termux-style
@@ -25,7 +26,7 @@ cd termux-style
 ./tstyle
 
 cd
-
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/tampilan.py
-mv tampilan.py /data/data/com.termux/files/usr/etc/
-
+cd /data/data/com.termux/files/usr/etc/
+rm zshrc
+wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc
+cd
