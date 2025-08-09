@@ -1,0 +1,52 @@
+emulate sh -c '. /data/data/com.termux/files/usr/etc/profile'
+
+# Handles nonexistent commands.
+# If user has entered command which invokes non-available
+# utility, command-not-found will give a package suggestions.
+if [ -x "/data/data/com.termux/files/usr/libexec/termux/command-not-found" ]; then
+        command_not_found_handler() {
+                "/data/data/com.termux/files/usr"/libexec/termux/command-not-found "$1"
+        }
+fi
+
+PS1='%# '
+# vim: set noet ft=zsh tw=4 sw=4 ff=unix
+# Menu hanya jalan kalau ini sesi interaktif
+if [[ $- == *i* ]]; then
+    echo "\033[32;1m================================================================"
+    echo "\033[33;1m  ██╗    ██╗\033[32;1m██████╗ ███████╗     \033[36;1m Create by:"
+    echo "\033[33;1m  ██║    ██║\033[32;1m██╔══██╗██╔════╝      \033[33;1m Bestmomen"
+    echo "\033[33;1m  ██║ █╗ ██║\033[32;1m██████╔╝███████╗\033[36;1m Info Pemasangan"
+    echo "\033[33;1m  ██║███╗██║\033[32;1m██╔═══╝ ╚════██║    \033[36;1m Hubungi No:"
+    echo "\033[33;1m  ╚███╔███╔╝\033[32;1m██║     ███████║ \033[36;1m 0823-1112-3196"
+    echo "\033[33;1m   ╚══╝╚══╝ \033[32;1m╚═╝     ╚══════╝                          "
+    echo "\033[32;1m================================================================"
+    echo "\033[31;1mdilarang keras \033[36;1mmenyebarkan/menjual kembali script ini "
+    echo "\033[1;33m=============================="
+    echo "          MENU PILIHAN"
+    echo "==============================\033[0m"
+    echo "\033[1;32m1) Masuk Linux"
+    echo "2) Tetap di Termux\033[0m"
+    echo
+    printf "Masukkan pilihan [1/2]: "
+
+    # Gunakan read -r untuk baca input mentah, dan trim spasi
+    read -k1 pilihan
+    pilihan="${pilihan//[$'\t\r\n ']}"
+
+    case "$pilihan" in
+        1)
+            echo "Memasuki Linux..."
+            start  # ganti dengan perintah masuk Linux kamu
+            ;;
+        2)
+            clear
+            echo "\033[32;1mketik \033[1;31mexec zsh \033[32;1muntuk memunculkan kembali menu"
+            cd
+            ;;
+        *)
+            echo "\033[1;31mPilihan tidak valid, coba lagi yaaa...\033[0m"
+            exec zsh
+            ;;
+    esac
+fi
