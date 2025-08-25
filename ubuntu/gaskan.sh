@@ -35,7 +35,7 @@ echo ""
 read -n 1 -s -r -p "Press any key to continue..."
 termux-setup-storage
 # Set the correct password here
-correct_password="6"
+correct_password=" "
 # Function to prompt for password
 prompt_for_password() {
     echo "Enter the username:"
