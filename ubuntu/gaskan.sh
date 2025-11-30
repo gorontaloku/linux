@@ -64,6 +64,7 @@ pkg install wget -y
 
 
 #install debian
+mkdir -p .shortcuts
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs
 clear -x
