@@ -14,12 +14,7 @@ echo "alias ls='lsd'" >> data/data/com.termux/files/home/.zshrc
 rm nano .zshrc
 
 #Download .zshrc costum
-wget --header="Authorization: token $TOKEN" \
-     -O .zshrc \
-     "https://raw.githubusercontent.com/gorontaloku/linux/main/style/.zshrc"
-
-
-#wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/.zshrc
+wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/.zshrc
 
 
 git clone https://github.com/adi1090x/termux-style
@@ -33,8 +28,5 @@ cd termux-style
 cd
 cd /data/data/com.termux/files/usr/etc/
 rm zshrc
-wget --header="Authorization: token $TOKEN" \
-     -O zshrc \
-     "https://raw.githubusercontent.com/gorontaloku/linux/main/style/zshrc"
-#wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc
+wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/zshrc
 cd
