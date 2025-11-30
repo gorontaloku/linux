@@ -30,3 +30,7 @@ cd /data/data/com.termux/files/usr/etc/
 rm zshrc
 wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/zshrc
 cd
+
+
+
+zsh
