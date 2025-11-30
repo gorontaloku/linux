@@ -34,7 +34,7 @@ cd
 cd /data/data/com.termux/files/usr/etc/
 rm zshrc
 wget --header="Authorization: token $TOKEN" \
-     -O .zshrc \
+     -O zshrc \
      "https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc"
 #wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc
 cd
