@@ -63,6 +63,11 @@ pkg install proot-distro -y
 pkg install wget -y
 
 
+if [ -z "${TOKEN+x}" ]; then
+    read -p "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: " TOKEN
+fi
+
+
 #install debian
 mkdir -p .shortcuts
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro
