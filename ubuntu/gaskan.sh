@@ -171,5 +171,3 @@ echo "Instalasi Telah Selesai!"
 echo "Jangan Pernah Mencoba Untuk Instalasi Mandiri Tanpa Pengawasan Saya"
 echo "BESTMOMEN"
 echo ""
-
-zsh
