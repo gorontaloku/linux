@@ -16,7 +16,7 @@ rm nano .zshrc
 #Download .zshrc costum
 wget --header="Authorization: token $TOKEN" \
      -O .zshrc \
-     "https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/.zshrc"
+     "https://raw.githubusercontent.com/gorontaloku/linux/main/style/.zshrc"
 
 
 #wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/.zshrc
@@ -35,6 +35,6 @@ cd /data/data/com.termux/files/usr/etc/
 rm zshrc
 wget --header="Authorization: token $TOKEN" \
      -O zshrc \
-     "https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc"
+     "https://raw.githubusercontent.com/gorontaloku/linux/main/style/zshrc"
 #wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/style/zshrc
 cd
