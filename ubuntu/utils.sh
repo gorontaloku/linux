@@ -26,6 +26,7 @@ proot-distro login debian --user user --shared-tmp -- bash -c "export DISPLAY=:0
 EOF
 
 chmod +x start
+cp start .shortcuts
 mv start $PREFIX/bin
 
 #Stop script
@@ -37,6 +38,7 @@ pkill -f com.termux.x11
 EOF
 
 chmod +x stop
+cp stop .shortcuts
 mv stop $PREFIX/bin
 
 
