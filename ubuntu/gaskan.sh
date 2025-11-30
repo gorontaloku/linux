@@ -68,16 +68,11 @@ mkdir -p .shortcuts
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro
 mkdir -p /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs
 clear -x
-echo ""
-echo "Hampir selesai, tunggulah beberapa saat!"
-echo "Proses extract sedang berlangsung"
-echo "jangan di close"
-echo ""
 
 #pindah File
 #read -p "Pilih OS (newmac/windows2): " pilih
 #mv storage/downloads/newmacos.tar.xz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-read -p "Pilih OS (macos/windows): " pilih
+read -p "Pilih OS (newmac/windows): " pilih
 
 # Lokasi file asal (download)
 src="$HOME/storage/downloads/${pilih}.tar.xz"
@@ -95,6 +90,11 @@ fi
 mv "$src" "$dst"
 
 #echo "Berhasil dipindahkan dan di-rename menjadi tes.tar.xz"
+echo ""
+echo "Hampir selesai, tunggulah beberapa saat!"
+echo "Proses extract sedang berlangsung"
+echo "jangan di close"
+echo ""
 
 
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
