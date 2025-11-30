@@ -122,14 +122,22 @@ cd
 
 
 #copy widget
-wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
+wget --header="Authorization: token $TOKEN" \
+     -O utils.sh \
+     "https://raw.githubusercontent.com/gorontaloku/linux/main/ubuntu/utils.sh"
+
+#wget https://raw.githubusercontent.com/gorontaloku/linux/refs/heads/main/ubuntu/utils.sh
 cd
 chmod +x utils.sh
 ./utils.sh
 
 
 #Download script banner
-wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
+wget --header="Authorization: token $TOKEN" \
+     -O utils.sh \
+     "https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh"
+
+#wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
 chmod +x termux.sh
 ./termux.sh
 cd
