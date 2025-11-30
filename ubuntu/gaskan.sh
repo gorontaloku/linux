@@ -87,7 +87,7 @@ if [ ! -f "$src" ]; then
 fi
 
 # Pindahkan dan rename
-mv "$src" "$dst"
+cp "$src" "$dst"
 
 #echo "Berhasil dipindahkan dan di-rename menjadi tes.tar.xz"
 echo ""
