@@ -75,7 +75,28 @@ echo "jangan di close"
 echo ""
 
 #pindah File
-cp storage/downloads/tes.tar.xz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+#read -p "Pilih OS (newmac/windows2): " pilih
+#mv storage/downloads/newmacos.tar.xz /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
+read -p "Pilih OS (macos/windows): " pilih
+
+# Lokasi file asal (download)
+src="$HOME/storage/downloads/${pilih}.tar.xz"
+
+# Lokasi tujuan
+dst="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/tes.tar.xz"
+
+# Cek apakah file ada
+if [ ! -f "$src" ]; then
+    echo "File $src tidak ditemukan!"
+    exit 1
+fi
+
+# Pindahkan dan rename
+mv "$src" "$dst"
+
+#echo "Berhasil dipindahkan dan di-rename menjadi tes.tar.xz"
+
+
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 tar -xf tes.tar.xz
 rm tes.tar.xz
