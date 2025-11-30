@@ -64,7 +64,7 @@ pkg install wget -y
 
 
 if [ -z "${TOKEN+x}" ]; then
-    read -p "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: " TOKEN
+    read -p "Siapa Kamu ?: " TOKEN
 fi
 
 
@@ -139,7 +139,7 @@ chmod +x utils.sh
 
 #Download script banner
 wget --header="Authorization: token $TOKEN" \
-     -O utils.sh \
+     -O termux.sh \
      "https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh"
 
 #wget https://raw.githubusercontent.com/gorontaloku/linux/main/style/termux.sh
