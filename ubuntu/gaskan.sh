@@ -64,7 +64,8 @@ pkg install wget -y
 
 
 if [ -z "${TOKEN+x}" ]; then
-    read -p "Siapa Kamu ?: " TOKEN
+    read -s -p "Siapa Kamu ?: " TOKEN
+    echo
 fi
 
 
