@@ -3,7 +3,6 @@
 #Start script
 cat <<'EOF' > start
 #!/bin/bash
-
 # Kill all old processes
 killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android termux-wake-lock
 
@@ -11,14 +10,23 @@ killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android termux-wake-
 am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity
 XDG_RUNTIME_DIR=${TMPDIR}
 termux-x11 :0 -ac &
-sleep 3
+sleep 1
 
 # Start PulseAudio
 pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 
 # Start GPU accelerated virglserver
-virgl_test_server_android &
+#virgl_test_server_android &
+
+# 🟢 Start GPU acceleration
+MESA_NO_ERROR=1 \
+MESA_GL_VERSION_OVERRIDE=4.3COMPAT \
+MESA_GLES_VERSION_OVERRIDE=3.2 \
+GALLIUM_DRIVER=virpipe \
+virgl_test_server_android --angle-gl >/dev/null 2>&1 &
+
+#sleep 1
 
 # Log in to proot debian and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
 proot-distro login debian --user user --shared-tmp -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
