@@ -30,7 +30,6 @@ virgl_test_server_android --angle-gl >/dev/null 2>&1 &
 
 # Log in to proot debian and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
 proot-distro login debian --user user --shared-tmp -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
-
 EOF
 
 chmod +x start
