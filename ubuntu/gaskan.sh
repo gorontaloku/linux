@@ -81,10 +81,10 @@ clear -x
 read -p "Pilih OS (newmac/windows): " pilih
 
 # Lokasi file asal (download)
-src="$HOME/storage/downloads/${pilih}.tar.xz"
+src="$HOME/storage/downloads/${pilih}.tar.zst"
 
 # Lokasi tujuan
-dst="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/tes.tar.xz"
+dst="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/tes.tar.zst"
 
 # Cek apakah file ada
 if [ ! -f "$src" ]; then
@@ -104,8 +104,8 @@ echo ""
 
 
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
-tar -xf tes.tar.xz
-rm tes.tar.xz
+tar -xf tes.tar.zst
+rm tes.tar.zst
 cd
 
 #mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
