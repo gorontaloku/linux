@@ -126,6 +126,8 @@ cd
 #cd $PREFIX/var/lib/proot-distro/installed-rootfs/debian/
 #chmod +x Notify.sh
 
+#===Fix Wa===
+wget -O- https://raw.githubusercontent.com/gorontaloku/debian/main/files/Fixwa | bash
 
 #copy widget
 wget --header="Authorization: token $TOKEN" \
