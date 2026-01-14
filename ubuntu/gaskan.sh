@@ -81,7 +81,7 @@ clear -x
 read -p "Pilih OS (newmac/windows): " pilih
 
 # Lokasi file asal (download)
-src="$HOME/storage/documents/${pilih}.tar.xz"
+src="$HOME/storage/downloads/${pilih}.tar.xz"
 
 # Lokasi tujuan
 dst="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/tes.tar.xz"
