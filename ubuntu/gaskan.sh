@@ -170,9 +170,9 @@ cd
 #cd
 #rm -rf /tmp/ttf-wps-fonts
 
-cd
-rm gaskan.sh
-rm utils.sh
+#cd
+#rm gaskan.sh
+#rm utils.sh
 #rm termux.sh
 
 clear -x
