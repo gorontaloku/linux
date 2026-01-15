@@ -102,16 +102,24 @@ echo "Proses extract sedang berlangsung"
 echo "jangan di close"
 echo ""
 
+cd
+cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
+rm tes.tar.xz
+cd
 
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
 tar -xf tes.tar.xz
 rm tes.tar.xz
 cd
 
+
+#OK LANJUT
+echo ""
+echo "OK LANJUT"
+echo "SABAR YA DIKIT LAGI"
+echo ""
 #mv storage /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop
-#cd
-#cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
-#rm macos.tar.gz
+
 
 #SET Walpapper
 #cd ../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/images/desktop-base/
