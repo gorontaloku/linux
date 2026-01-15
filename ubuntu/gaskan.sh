@@ -104,7 +104,7 @@ echo ""
 
 cd
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/user/Desktop/storage/downloads
-rm tes.tar.xz
+rm *.tar.xz
 cd
 
 cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/
