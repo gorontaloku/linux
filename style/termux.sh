@@ -31,6 +31,10 @@ rm zshrc
 wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/zshrc
 cd
 
-
+cd
+rm gaskan.sh
+rm utils.sh
+rm termux.sh
+rm .zsh_history
 
 zsh
