@@ -51,3 +51,5 @@ mv Tutup $PREFIX/bin
 wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/wib/Setting
 chmod +x Setting
 
+wget https://raw.githubusercontent.com/gorontaloku/debian/main/files/wib/setting
+chmod +x setting
