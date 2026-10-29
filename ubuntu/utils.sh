@@ -29,7 +29,29 @@ virgl_test_server_android --angle-gl >/dev/null 2>&1 &
 #sleep 1
 
 # Log in to proot debian and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
-proot-distro login debian --user user --shared-tmp -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
+#proot-distro login debian --user user --shared-tmp --bind /storage/2CD7-900E:/mnt/flashdisk -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
+
+
+# Deteksi flashdisk USB secara otomatis
+USB_PATH="$(awk '$2 ~ /^\/storage\/[^/]+$/ && $2 != "/storage/emulated" {print $2; exit}' /proc/mounts)"
+
+if [ -n "$USB_PATH" ] && [ -d "$USB_PATH" ]; then
+    echo "Flashdisk terdeteksi: $USB_PATH"
+
+    proot-distro login debian \
+      --user user \
+      --shared-tmp \
+      --bind "$USB_PATH:/mnt/flashdisk" \
+      -- bash -c 'export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4'
+else
+    echo "Flashdisk tidak terdeteksi. Desktop dijalankan tanpa bind USB."
+
+    proot-distro login debian \
+      --user user \
+      --shared-tmp \
+      -- bash -c 'export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4'
+fi
+
 EOF
 
 chmod +x start
