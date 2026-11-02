@@ -1,8 +1,9 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 set -Eeuo pipefail
-ARCHIVE_NAME="debianmac.tar.xz"
-DOWNLOAD="$HOME/storage/shared/Download"                                                    SHARED="$HOME/storage/shared"                                                               SCRIPT_PATH="$HOME/newwps.sh"
+DOWNLOAD="$HOME/storage/shared/Download"
+SHARED="$HOME/storage/shared"
+SCRIPT_PATH="$HOME/newwps.sh"
 LOG="$HOME/newwps-restore.log"
 
 # GitHub Personal Access Token
@@ -50,6 +51,39 @@ while true; do
     printf '\033[33;1m%s\033[0m\n' '  Jawab Dong!'
 done
 
+echo ""
+echo "=================================="
+echo "       PILIH OS"
+echo "=================================="
+
+read -r -p "Pilih OS: " pilih
+
+if [ -z "$pilih" ]; then
+    echo "Nama OS tidak boleh kosong!"
+    exit 1
+fi
+
+ARCHIVE_NAME="${pilih}.tar.xz"
+ARCHIVE=""
+
+for f in "$DOWNLOAD/$ARCHIVE_NAME" "$SHARED/$ARCHIVE_NAME"; do
+    if [ -f "$f" ]; then
+        ARCHIVE="$f"
+        break
+    fi
+done
+
+if [ -z "$ARCHIVE" ]; then
+    echo "ERROR: File $ARCHIVE_NAME tidak ditemukan."
+    echo "Lokasi pencarian:"
+    echo "$DOWNLOAD"
+    echo "$SHARED"
+    exit 1
+fi
+
+echo ""
+echo "File ditemukan: $ARCHIVE"
+
 clear
 printf '\033[32;1m'
 printf '%s\n' '=============================================================='
@@ -87,14 +121,14 @@ tar -tJf "$ARCHIVE" >/dev/null
 echo ""
 proot-distro list
 echo ""
-echo "PERINGATAN: Restore dapat mengganti Debian yang sudah ada."
-read -r -p "Ketik RESTORE untuk melanjutkan: " jawab
-[ "$jawab" = "RESTORE" ] || exit 1
+echo "PERINGATAN: Proses Ini Dapat Mengganti Isi Termux Yang Sudah Ada."
+read -r -p "Ketik LANJUT untuk melanjutkan: " jawab
+[ "$jawab" = "LANJUT" ] || exit 1
 
-echo "Memulihkan Debian..."
+echo "Proses Sedang Berlangsung..."
 proot-distro restore "$ARCHIVE"
 
-echo "Memeriksa Debian..."
+echo "Memeriksa Proses..."
 proot-distro login debian -- /usr/bin/env bash -lc \
     'test -f /etc/os-release && cat /etc/os-release'
 
@@ -140,7 +174,7 @@ else
 fi
 
 echo ""
-echo "Restore dan pemasangan script selesai."
+echo "ProsesInstall Telah selesai."
 
 echo "File berikut akan dihapus:"
 echo "$ARCHIVE"
@@ -157,5 +191,5 @@ rm -f -- "$ARCHIVE"
 rm -f -- "$DOWNLOAD/newwps.sh"
 rm -f -- "$SCRIPT_PATH"
 
-echo "Restore selesai. File master telah dihapus."
+echo "Sukses Yaa."
 echo "Log tersimpan di $LOG"
