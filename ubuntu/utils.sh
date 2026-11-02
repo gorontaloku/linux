@@ -52,6 +52,9 @@ else
       -- bash -c 'export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4'
 fi
 
+sleep 1
+exec zsh
+
 EOF
 
 chmod +x start
