@@ -98,6 +98,7 @@ pkg update -y
 pkg install -y x11-repo
 pkg install -y termux-x11-nightly pulseaudio dbus
 pkg install -y bash proot-distro xz-utils
+pkg install -y wget git
 
 ARCHIVE=""
 for f in "$DOWNLOAD/$ARCHIVE_NAME" "$SHARED/$ARCHIVE_NAME"; do
