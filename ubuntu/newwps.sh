@@ -1,12 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/bash
-
+termux-setup-storage || true
+clear
 set -Eeuo pipefail
 DOWNLOAD="$HOME/storage/shared/Download"
 SHARED="$HOME/storage/shared"
 SCRIPT_PATH="$HOME/newwps.sh"
 LOG="$HOME/newwps-restore.log"
 
-termux-setup-storage || true
+
 
 # GitHub Personal Access Token
 while [ -z "${TOKEN:-}" ]; do
