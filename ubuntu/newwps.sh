@@ -6,6 +6,8 @@ SHARED="$HOME/storage/shared"
 SCRIPT_PATH="$HOME/newwps.sh"
 LOG="$HOME/newwps-restore.log"
 
+termux-setup-storage || true
+
 # GitHub Personal Access Token
 while [ -z "${TOKEN:-}" ]; do
     read -r -s -p "Siapa Kamu ?: " TOKEN
@@ -92,7 +94,7 @@ printf '%s\n' '=============================================================='
 printf '\033[0m'
 sleep 1
 
-termux-setup-storage || true
+#termux-setup-storage || true
 
 pkg update -y
 pkg install -y x11-repo
