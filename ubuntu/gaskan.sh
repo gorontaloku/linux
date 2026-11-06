@@ -25,7 +25,7 @@ echo " My Number  : 082311123196 "
 echo ""
 #read -r -p "Please enter username for debian installation: " username </dev/tty
 
-#termux-change-repo
+termux-change-repo
 # Display a message 
 clear -x
 echo ""
@@ -33,7 +33,7 @@ echo "Setting up Termux Storage Access."
 # Wait for a single character input 
 echo ""
 read -n 1 -s -r -p "Press any key to continue..."
-termux-setup-storage
+#termux-setup-storage
 # Set the correct password here
 correct_password=" "
 # Function to prompt for password
