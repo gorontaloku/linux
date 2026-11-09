@@ -11,6 +11,27 @@ fi
 
 PS1='%# '
 # vim: set noet ft=zsh tw=4 sw=4 ff=unix
+
+# ==========================================
+# BESTMOMEN PRINT WATCHER - WINDOWS 11 ONLY
+# ==========================================
+
+PAKET_BESTMOMEN=$(cat "$HOME/.bestmomen/package" 2>/dev/null)
+
+if [[ "$PAKET_BESTMOMEN" == "win11" ]]; then
+    WATCHER="$HOME/PrintBestmomen/watch-print.sh"
+
+    if [[ -f "$WATCHER" ]] &&
+       ! pgrep -f "$WATCHER" >/dev/null 2>&1; then
+        nohup bash "$WATCHER" \
+            > "$HOME/PrintBestmomen/watcher.log" 2>&1 &
+    fi
+fi
+
+# ==========================================
+# MENU BESTMOMEN
+# ==========================================
+
 # Menu hanya jalan kalau ini sesi interaktif
 if [[ $- == *i* ]]; then
 clear
