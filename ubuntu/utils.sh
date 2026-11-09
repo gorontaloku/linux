@@ -2,58 +2,157 @@
 
 #Start script
 cat <<'EOF' > start
-#!/bin/bash
-# Kill all old processes
-killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android termux-wake-lock
 
-# Start Termux X11
-am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity
-XDG_RUNTIME_DIR=${TMPDIR}
+#!/data/data/com.termux/files/usr/bin/bash
+
+# ==========================================
+# BESTMOMEN START - SHARED SCRIPT
+# macOS + Windows 11
+# ==========================================
+
+PAKET_BESTMOMEN=$(cat "$HOME/.bestmomen/package" 2>/dev/null)
+
+# ==========================================
+# CLEAN START TERMUX X11
+# ==========================================
+
+echo "Membersihkan sesi lama..."
+
+am force-stop com.termux.x11 2>/dev/null || true
+
+killall -9 termux-x11 Xwayland pulseaudio \
+    virgl_test_server_android termux-wake-lock 2>/dev/null || true
+
+sleep 2
+
+export XDG_RUNTIME_DIR="$TMPDIR"
+
+echo "Menjalankan server X11..."
+
 termux-x11 :0 -ac &
-sleep 1
 
-# Start PulseAudio
-pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
-pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
+sleep 3
 
-# Start GPU accelerated virglserver
-#virgl_test_server_android &
+echo "Membuka aplikasi Termux:X11..."
 
-# 🟢 Start GPU acceleration
+am start --user 0 -n \
+    com.termux.x11/com.termux.x11.MainActivity
+
+sleep 2
+
+# ==========================================
+# START PULSEAUDIO
+# ==========================================
+
+pulseaudio --start \
+    --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
+    --exit-idle-time=-1
+
+pacmd load-module module-native-protocol-tcp \
+    auth-ip-acl=127.0.0.1 auth-anonymous=1 2>/dev/null || true
+
+# ==========================================
+# START VIRGL
+# ==========================================
+
 MESA_NO_ERROR=1 \
 MESA_GL_VERSION_OVERRIDE=4.3COMPAT \
 MESA_GLES_VERSION_OVERRIDE=3.2 \
 GALLIUM_DRIVER=virpipe \
 virgl_test_server_android --angle-gl >/dev/null 2>&1 &
 
-#sleep 1
+# ==========================================
+# WINDOWS 11 - CUPS + USB
+# ==========================================
 
-# Log in to proot debian and start the desktop environment. Note that startxfce4 at the end is used to start the XFCE4 desktop.
-#proot-distro login debian --user user --shared-tmp --bind /storage/2CD7-900E:/mnt/flashdisk -- bash -c "export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4"
+if [[ "$PAKET_BESTMOMEN" == "win11" ]]; then
 
+    echo "Paket Windows 11 terdeteksi."
 
-# Deteksi flashdisk USB secara otomatis
-USB_PATH="$(awk '$2 ~ /^\/storage\/[^/]+$/ && $2 != "/storage/emulated" {print $2; exit}' /proc/mounts)"
+    USB_PATH="$(awk '$2 ~ /^\/storage\/[^/]+$/ && $2 != "/storage/emulated" {print $2; exit}' /proc/mounts)"
 
-if [ -n "$USB_PATH" ] && [ -d "$USB_PATH" ]; then
-    echo "Flashdisk terdeteksi: $USB_PATH"
+    if [[ -n "$USB_PATH" && -d "$USB_PATH" ]]; then
 
-    proot-distro login debian \
-      --user user \
-      --shared-tmp \
-      --bind "$USB_PATH:/mnt/flashdisk" \
-      -- bash -c 'export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4'
+        echo "Flashdisk terdeteksi: $USB_PATH"
+
+        proot-distro login debian \
+            --user user \
+            --shared-tmp \
+            --bind "$USB_PATH:/mnt/flashdisk" \
+            -- bash -c '
+                export DISPLAY=:0
+                export PULSE_SERVER=tcp:127.0.0.1
+
+                echo "Mengaktifkan CUPS..."
+
+                if sudo -n service cups start; then
+                    echo "CUPS berhasil dijalankan."
+                    sleep 2
+                    lpstat -t
+                else
+                    echo "PERINGATAN: CUPS gagal dijalankan."
+                    echo "Periksa konfigurasi sudoers."
+                fi
+
+                dbus-launch --exit-with-session startxfce4
+            '
+
+    else
+
+        echo "Flashdisk tidak terdeteksi."
+        echo "Desktop dijalankan tanpa bind USB."
+
+        proot-distro login debian \
+            --user user \
+            --shared-tmp \
+            -- bash -c '
+                export DISPLAY=:0
+                export PULSE_SERVER=tcp:127.0.0.1
+
+                echo "Mengaktifkan CUPS..."
+
+                if sudo -n service cups start; then
+                    echo "CUPS berhasil dijalankan."
+                    sleep 2
+                    lpstat -t
+                else
+                    echo "PERINGATAN: CUPS gagal dijalankan."
+                    echo "Periksa konfigurasi sudoers."
+                fi
+
+                dbus-launch --exit-with-session startxfce4
+            '
+    fi
+
 else
-    echo "Flashdisk tidak terdeteksi. Desktop dijalankan tanpa bind USB."
+
+    # ==========================================
+    # MACOS PACKAGE
+    # ==========================================
+
+    echo "Paket macOS terdeteksi."
 
     proot-distro login debian \
-      --user user \
-      --shared-tmp \
-      -- bash -c 'export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1; dbus-launch --exit-with-session startxfce4'
+        --user user \
+        --shared-tmp \
+        -- bash -c '
+            export DISPLAY=:0
+            export PULSE_SERVER=tcp:127.0.0.1
+
+            dbus-launch --exit-with-session startxfce4
+        '
+
 fi
 
+# ==========================================
+# RETURN TO BESTMOMEN MENU
+# ==========================================
+
+echo "Desktop Linux telah dihentikan."
 sleep 1
+
 exec zsh
+
 
 EOF
 
