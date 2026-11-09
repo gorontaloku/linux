@@ -180,6 +180,61 @@ fi
 echo ""
 echo "ProsesInstall Telah selesai."
 
+
+echo ""
+echo "=================================="
+echo "Menyiapkan Fitur Print Bestmomen"
+echo "=================================="
+
+# Paket Termux yang dibutuhkan untuk Print Watcher
+pkg install -y inotify-tools termux-tools procps
+
+# Folder konfigurasi paket
+mkdir -p "$HOME/.bestmomen"
+echo "win11" > "$HOME/.bestmomen/package"
+
+# Folder pekerjaan print
+PRINT_DIR="$HOME/PrintBestmomen/jobs"
+mkdir -p "$PRINT_DIR"
+
+# Membuat Print Watcher
+cat > "$HOME/PrintBestmomen/watch-print.sh" <<'WATCHER'
+#!/data/data/com.termux/files/usr/bin/bash
+
+DIR="$HOME/storage/shared/PrintBestmomen/jobs"
+PDF="$DIR/output.pdf"
+
+mkdir -p "$DIR"
+
+echo "Bestmomen Print Watcher aktif."
+echo "Memantau: $PDF"
+
+inotifywait -m -q -e close_write,moved_to --format '%f' "$DIR" |
+while IFS= read -r FILE; do
+    if [[ "$FILE" == "output.pdf" ]]; then
+        echo "PDF selesai dibuat: $PDF"
+        sleep 2
+
+        if [[ -s "$PDF" ]]; then
+            echo "Membuka NokoPrint..."
+            termux-open --view "$PDF"
+        else
+            echo "PDF belum tersedia atau kosong."
+        fi
+    fi
+done
+WATCHER
+
+chmod +x "$HOME/PrintBestmomen/watch-print.sh"
+
+echo "Konfigurasi Print Watcher selesai."
+
+
+# Tandai instalasi sebagai paket Windows 11 BESTMOMEN
+mkdir -p "$HOME/.bestmomen"
+echo "win11" > "$HOME/.bestmomen/package"
+
+echo ""
 echo "File berikut akan dihapus:"
 echo "$ARCHIVE"
 echo "$DOWNLOAD/newwps.sh"
