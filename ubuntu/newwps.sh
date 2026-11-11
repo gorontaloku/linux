@@ -230,7 +230,33 @@ chmod +x "$HOME/PrintBestmomen/watch-print.sh"
 echo "Konfigurasi Print Watcher selesai."
 
 
+
+# ==========================================
+# AKTIFKAN AKSES BESTMOMEN PRINT
+# ==========================================
+
+echo ""
+echo "Mengaktifkan akses Bestmomen Print..."
+
+mkdir -p "$HOME/.termux"
+
+PROPERTIES="$HOME/.termux/termux.properties"
+touch "$PROPERTIES"
+
+if grep -qE '^[[:space:]]*allow-external-apps[[:space:]]*=' "$PROPERTIES"; then
+    sed -i 's/^[[:space:]]*allow-external-apps[[:space:]]*=.*/allow-external-apps = true/' "$PROPERTIES"
+else
+    printf '\nallow-external-apps = true\n' >> "$PROPERTIES"
+fi
+
+termux-reload-settings
+
+echo "Akses aplikasi eksternal Termux berhasil diaktifkan."
+
+#=====================================================
 # Tandai instalasi sebagai paket Windows 11 BESTMOMEN
+#=====================================================
+
 mkdir -p "$HOME/.bestmomen"
 echo "win11" > "$HOME/.bestmomen/package"
 
