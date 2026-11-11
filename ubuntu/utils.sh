@@ -6,53 +6,75 @@ cat <<'EOF' > start
 #!/data/data/com.termux/files/usr/bin/bash
 
 # ==========================================
-# BESTMOMEN START - SHARED SCRIPT
+# BESTMOMEN START - SHARED SCRIPT (OPTIMIZED)
 # macOS + Windows 11
 # ==========================================
 
 PAKET_BESTMOMEN=$(cat "$HOME/.bestmomen/package" 2>/dev/null)
 
-# ==========================================
-# CLEAN START TERMUX X11
-# ==========================================
-
-echo "Membersihkan sesi lama..."
-
-am force-stop com.termux.x11 2>/dev/null || true
-
-killall -9 termux-x11 Xwayland pulseaudio \
-    virgl_test_server_android termux-wake-lock 2>/dev/null || true
-
-sleep 2
+T0=$(date +%s)
+ts() { printf '[%2ss] %s\n' "$(( $(date +%s) - T0 ))" "$*"; }
 
 export XDG_RUNTIME_DIR="$TMPDIR"
+XSOCK="$TMPDIR/.X11-unix/X0"
+XLOG="$TMPDIR/termux-x11.log"
+INNER="$TMPDIR/xfce-inner.sh"
+CUPS_FLAG="$TMPDIR/.cups-on"
 
-echo "Menjalankan server X11..."
+# ==========================================
+# 1. BERSIHKAN SESI LAMA
+# ==========================================
 
-termux-x11 :0 -ac &
+ts "membersihkan sesi lama..."
+am force-stop com.termux.x11 2>/dev/null || true
+killall -9 termux-x11 pulseaudio virgl_test_server_android \
+    termux-wake-lock 2>/dev/null || true
+rm -f "$XSOCK" "$XSOCK-lock"
+rm -rf "$TMPDIR/.X11-unix"
+mkdir -p "$TMPDIR/.X11-unix"
 
-sleep 3
+termux-wake-lock >/dev/null 2>&1 || true
 
-echo "Membuka aplikasi Termux:X11..."
+# ==========================================
+# 2. SERVER X11 + APP (PARALEL)
+# ==========================================
 
+ts "menjalankan server X11..."
+termux-x11 :0 -ac -nolisten tcp >"$XLOG" 2>&1 &
+XPID=$!
+
+ts "membuka aplikasi Termux:X11..."
 am start --user 0 -n \
-    com.termux.x11/com.termux.x11.MainActivity
+    com.termux.x11/com.termux.x11.MainActivity >/dev/null 2>&1 &
 
-sleep 2
+for _ in $(seq 1 300); do
+    [ -S "$XSOCK" ] && break
+    kill -0 "$XPID" 2>/dev/null || break
+    sleep 0.05
+done
+
+if [ ! -S "$XSOCK" ]; then
+    ts "GAGAL: socket X tidak muncul"
+    cat "$XLOG"
+    exit 1
+fi
+ts "X server siap"
 
 # ==========================================
-# START PULSEAUDIO
+# 3. START PULSEAUDIO (NON-BLOCKING)
 # ==========================================
 
-pulseaudio --start \
-    --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
-    --exit-idle-time=-1
-
-pacmd load-module module-native-protocol-tcp \
-    auth-ip-acl=127.0.0.1 auth-anonymous=1 2>/dev/null || true
+(
+    pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
+    for _ in $(seq 1 15); do
+        pactl load-module module-native-protocol-tcp \
+            auth-ip-acl=127.0.0.1 auth-anonymous=1 >/dev/null 2>&1 && break
+        sleep 0.2
+    done
+) &
 
 # ==========================================
-# START VIRGL
+# 4. START VIRGL
 # ==========================================
 
 MESA_NO_ERROR=1 \
@@ -62,85 +84,87 @@ GALLIUM_DRIVER=virpipe \
 virgl_test_server_android --angle-gl >/dev/null 2>&1 &
 
 # ==========================================
-# WINDOWS 11 - CUPS + USB
+# 5. SCRIPT SESI DI DALAM DEBIAN
 # ==========================================
 
-if [[ "$PAKET_BESTMOMEN" == "win11" ]]; then
+{
+    cat <<'INNER'
+export DISPLAY=:0
+export PULSE_SERVER=tcp:127.0.0.1:4713
 
-    echo "Paket Windows 11 terdeteksi."
+# ---- INI YANG MEMOTONG DELAY 25-50 DETIK ----
+export NO_AT_BRIDGE=1
+export GTK_A11Y=none
+export QT_ACCESSIBILITY=0
+export XDG_RUNTIME_DIR=/tmp/runtime-$(id -u)
+mkdir -p "$XDG_RUNTIME_DIR" 2>/dev/null
+chmod 700 "$XDG_RUNTIME_DIR" 2>/dev/null
 
-    USB_PATH="$(awk '$2 ~ /^\/storage\/[^/]+$/ && $2 != "/storage/emulated" {print $2; exit}' /proc/mounts)"
+if [ ! -s /var/lib/dbus/machine-id ]; then
+    mkdir -p /var/lib/dbus
+    dbus-uuidgen > /var/lib/dbus/machine-id 2>/dev/null
+fi
+[ -s /etc/machine-id ] || cp /var/lib/dbus/machine-id /etc/machine-id 2>/dev/null
 
-    if [[ -n "$USB_PATH" && -d "$USB_PATH" ]]; then
+rm -f /tmp/.X0-lock 2>/dev/null
 
-        echo "Flashdisk terdeteksi: $USB_PATH"
+if [ -f /tmp/.cups-on ]; then
+    (
+        if sudo -n service cups start >/tmp/cups.log 2>&1; then
+            echo "CUPS berhasil dijalankan." >>/tmp/cups.log
+        else
+            echo "PERINGATAN: CUPS gagal dijalankan." >>/tmp/cups.log
+            echo "Periksa konfigurasi sudoers." >>/tmp/cups.log
+        fi
+        lpstat -t >>/tmp/cups.log 2>&1
+    ) &
+fi
 
-        proot-distro login debian \
-            --user user \
-            --shared-tmp \
-            --bind "$USB_PATH:/mnt/flashdisk" \
-            -- bash -c '
-                export DISPLAY=:0
-                export PULSE_SERVER=tcp:127.0.0.1
-
-                echo "Mengaktifkan CUPS..."
-
-                if sudo -n service cups start; then
-                    echo "CUPS berhasil dijalankan."
-                    sleep 2
-                    lpstat -t
-                else
-                    echo "PERINGATAN: CUPS gagal dijalankan."
-                    echo "Periksa konfigurasi sudoers."
-                fi
-
-                dbus-launch --exit-with-session startxfce4
-            '
-
-    else
-
-        echo "Flashdisk tidak terdeteksi."
-        echo "Desktop dijalankan tanpa bind USB."
-
-        proot-distro login debian \
-            --user user \
-            --shared-tmp \
-            -- bash -c '
-                export DISPLAY=:0
-                export PULSE_SERVER=tcp:127.0.0.1
-
-                echo "Mengaktifkan CUPS..."
-
-                if sudo -n service cups start; then
-                    echo "CUPS berhasil dijalankan."
-                    sleep 2
-                    lpstat -t
-                else
-                    echo "PERINGATAN: CUPS gagal dijalankan."
-                    echo "Periksa konfigurasi sudoers."
-                fi
-
-                dbus-launch --exit-with-session startxfce4
-            '
-    fi
-
+if command -v dbus-run-session >/dev/null 2>&1; then
+    exec dbus-run-session -- startxfce4
 else
+    exec dbus-launch --exit-with-session startxfce4
+fi
+INNER
+} > "$INNER"
 
-    # ==========================================
-    # MACOS PACKAGE
-    # ==========================================
+# ==========================================
+# 6. JALANKAN DESKTOP
+# ==========================================
 
-    echo "Paket macOS terdeteksi."
+run_desktop() {
+    local usb_path="${1:-}"
+    local -a extra=()
+    [ -n "$usb_path" ] && extra=(--bind "$usb_path:/mnt/flashdisk")
 
     proot-distro login debian \
         --user user \
         --shared-tmp \
-        -- bash -c '
-            export DISPLAY=:0
-            export PULSE_SERVER=tcp:127.0.0.1
+        "${extra[@]}" \
+        -- bash /tmp/xfce-inner.sh
+}
 
-            dbus-launch --exit-with-session startxfce4
-        '
+if [[ "$PAKET_BESTMOMEN" == "win11" ]]; then
+
+    echo "Paket Windows 11 terdeteksi."
+    touch "$CUPS_FLAG"
+
+    USB_PATH="$(awk '$2 ~ /^\/storage\/[^/]+$/ && $2 != "/storage/emulated" {print $2; exit}' /proc/mounts)"
+
+    if [[ -n "$USB_PATH" && -d "$USB_PATH" ]]; then
+        echo "Flashdisk terdeteksi: $USB_PATH"
+        run_desktop "$USB_PATH"
+    else
+        echo "Flashdisk tidak terdeteksi."
+        echo "Desktop dijalankan tanpa bind USB."
+        run_desktop
+    fi
+
+else
+
+    echo "Paket macOS terdeteksi."
+    rm -f "$CUPS_FLAG"
+    run_desktop
 
 fi
 
